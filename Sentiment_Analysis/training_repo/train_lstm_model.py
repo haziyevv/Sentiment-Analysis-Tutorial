@@ -4,7 +4,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from torchtext.vocab import Vocab
-from argparse import Namespace
+from argparse import Namespace, ArgumentParser
 from util import cleanup_text, create_vocabulary
 from data import collate_batch, create_input, create_lstm_data_loader
 from models import LSTMModel
@@ -16,7 +16,6 @@ if __name__ == "__main__":
     args = Namespace(
         hidden_dim=256,
         learning_rate=0.001,
-        train_csv="../raw_data/train.zip",
         batch_size=128,
         num_epochs=5,
         num_layers=1,
@@ -25,6 +24,14 @@ if __name__ == "__main__":
         output_dim=1
     )
 
+    parser = ArgumentParser()
+    parser.add_argument('--train-csv',
+                        help='Number of worker processes for background data loading',
+                        default='../raw_data/train.zip',
+                        type=str)
+
+    cli_args = parser.parse_args()
+    args.train_csv = cli_args.train_csv
     X_train, X_val, X_test, y_train, y_val, y_test = create_input(args.train_csv, cleanup_text)
 
 

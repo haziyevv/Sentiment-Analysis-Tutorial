@@ -4,7 +4,7 @@
 import torch
 import torch.optim as optim
 import torch.nn as nn
-from argparse import Namespace
+from argparse import Namespace, ArgumentParser
 from transformers import BertTokenizer, BertModel
 from util import cleanup_text
 from data import SentimentDataset, create_input, create_data_loader
@@ -15,7 +15,6 @@ if __name__ == "__main__":
     args = Namespace(
         hidden_dim=256,
         learning_rate=0.001,
-        train_csv="../raw_data/train.zip",
         batch_size=4,
         num_epochs=5,
         num_layers=1,
@@ -25,9 +24,17 @@ if __name__ == "__main__":
         max_input_length=128
     )
 
+    parser = ArgumentParser()
+    parser.add_argument('--train-csv',
+                        help='Number of worker processes for background data loading',
+                        default='../raw_data/train.zip',
+                        type=str)
+
+    cli_args = parser.parse_args()
+    args.train_csv = cli_args.train_csv
+
     X_train, X_val, X_test, y_train, y_val, y_test = create_input(args.train_csv, cleanup_text)
 
-    X_train, X_val, y_train, y_val = X_train[:1000], X_val[:1000], y_train[:1000], y_val[:1000]
     device = "cuda" if torch.cuda.is_available else "cpu"
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 
