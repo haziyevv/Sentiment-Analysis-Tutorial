@@ -1,7 +1,7 @@
 /raw_data/*
 *.zip
-Sentiment_Analysis/ckpt/*.pt
-Sentiment_Analysis/ckpt/vocabulary
+*.pt
+Sentiment_Analysis/vocabulary
 __pycache__/
 .idea
 .ipynb_checkpoints
