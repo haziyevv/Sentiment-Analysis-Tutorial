@@ -24,6 +24,27 @@ contractions.py  lstm_model.zip                 training_repo
 
 Pretrained models are loaded in this notebook. To use those download pretrained models and put in **ckpt** folder.
 
+This will download the lstm model with its vocabulary.
+
+```
+gdown  https://drive.google.com/uc?id=1QlO6zWtpZrJDXmEqnK_m66zO8CRQbsnk
+gdown https://drive.google.com/uc?id=1sCWHvNBqWP7hHzweckahXdBcn8IZKbpG
+```
+
+This wil download the bert with lstm model
+
+```
+gdown https://drive.google.com/uc?id=1PvfNpkULQxH29gcoO6191o0fkvyn5Y-d
+```
+
+This will download the only bert model
+
+```
+gdown https://drive.google.com/uc?id=1mSuVOOFPAMAxsIcERkmRl2gT7Nq3EWzx
+```
+
+After downloading these models, put them on ckpt folder
+
 ## Trained Sentiment Analysis Models
 
 To train the models create **raw\_data** folder and put **train.csv** Sentiment Analydis Dataset to there.
